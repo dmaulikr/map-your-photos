@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="iNU-LF-729">
+            <objects>
+                <viewController id="9gb-nn-0fv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Bkn-MC-Faw"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZkF-xG-zXW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VP0-XW-vRs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sAK-jf-I51">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map Your Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efO-M6-hQY">
+                                        <rect key="frame" x="103" y="320" width="170" height="27"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
+                                        <color key="textColor" red="0.99245077370000001" green="0.97639471290000002" blue="0.98025053740000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.29072245679999997" green="0.76560885209999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="efO-M6-hQY" firstAttribute="centerY" secondItem="sAK-jf-I51" secondAttribute="centerY" id="P96-K7-XI5"/>
+                                    <constraint firstItem="efO-M6-hQY" firstAttribute="centerX" secondItem="sAK-jf-I51" secondAttribute="centerX" id="rGM-t0-4Qz"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZkF-xG-zXW" firstAttribute="top" secondItem="sAK-jf-I51" secondAttribute="bottom" id="HA4-89-KCL"/>
+                            <constraint firstItem="sAK-jf-I51" firstAttribute="top" secondItem="VP0-XW-vRs" secondAttribute="top" id="Hn7-G3-hdw"/>
+                            <constraint firstItem="sAK-jf-I51" firstAttribute="leading" secondItem="VP0-XW-vRs" secondAttribute="leading" id="PIw-QG-Pgq"/>
+                            <constraint firstAttribute="trailing" secondItem="sAK-jf-I51" secondAttribute="trailing" id="ccN-Hx-PT3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OFI-xM-op1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
+        </scene>
+    </scenes>
+</document>
