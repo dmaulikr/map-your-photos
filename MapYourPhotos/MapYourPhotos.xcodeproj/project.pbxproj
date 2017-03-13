@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BAA0C64F1E769230004A233B /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BAA0C64E1E769230004A233B /* ArcGIS.bundle */; };
 		BAB8DFEC1E65507700FCADB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAB8DFEA1E65507700FCADB3 /* Main.storyboard */; };
 		BAB8DFEE1E65507700FCADB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAB8DFED1E65507700FCADB3 /* Assets.xcassets */; };
 		BAB8DFF11E65507700FCADB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAB8DFEF1E65507700FCADB3 /* LaunchScreen.storyboard */; };
@@ -16,7 +17,6 @@
 		BAB8E00A1E65523500FCADB3 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BAB8E0031E65523500FCADB3 /* SVProgressHUD.bundle */; };
 		BAB8E00B1E65523500FCADB3 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8E0051E65523500FCADB3 /* SVProgressHUD.m */; };
 		BAB8E00C1E65523500FCADB3 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8E0071E65523500FCADB3 /* SVRadialGradientLayer.m */; };
-		BAB8E00F1E6552F500FCADB3 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BAB8E00E1E6552F500FCADB3 /* ArcGIS.bundle */; };
 		BAD29C3A1E65559300B1D3A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD29C381E65559300B1D3A5 /* AppDelegate.swift */; };
 		BAD29C3B1E65559300B1D3A5 /* SharingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD29C391E65559300B1D3A5 /* SharingManager.swift */; };
 		BAD29C3D1E6555BD00B1D3A5 /* SaveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD29C3C1E6555BD00B1D3A5 /* SaveMapViewController.swift */; };
@@ -25,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BAA0C64E1E769230004A233B /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../../../Library/SDKs/ArcGIS/macOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
 		BAB8DFE31E65507700FCADB3 /* MapYourPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapYourPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAB8DFEB1E65507700FCADB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BAB8DFED1E65507700FCADB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -41,7 +42,6 @@
 		BAB8E0051E65523500FCADB3 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		BAB8E0061E65523500FCADB3 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		BAB8E0071E65523500FCADB3 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
-		BAB8E00E1E6552F500FCADB3 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../../Library/SDKs/ArcGIS/iOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
 		BAD29C381E65559300B1D3A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAD29C391E65559300B1D3A5 /* SharingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManager.swift; sourceTree = "<group>"; };
 		BAD29C3C1E6555BD00B1D3A5 /* SaveMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMapViewController.swift; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 		BAB8DFFC1E65523500FCADB3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				BAB8E00E1E6552F500FCADB3 /* ArcGIS.bundle */,
+				BAA0C64E1E769230004A233B /* ArcGIS.bundle */,
 				BAB8DFFD1E65523500FCADB3 /* SVProgressHUD */,
 			);
 			path = Library;
@@ -222,12 +222,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAA0C64F1E769230004A233B /* ArcGIS.bundle in Resources */,
 				BAD29C401E65568600B1D3A5 /* flickr.png in Resources */,
 				BAB8DFF11E65507700FCADB3 /* LaunchScreen.storyboard in Resources */,
 				BAB8DFEE1E65507700FCADB3 /* Assets.xcassets in Resources */,
 				BAB8DFEC1E65507700FCADB3 /* Main.storyboard in Resources */,
 				BAB8E00A1E65523500FCADB3 /* SVProgressHUD.bundle in Resources */,
-				BAB8E00F1E6552F500FCADB3 /* ArcGIS.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
