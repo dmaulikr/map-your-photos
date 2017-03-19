@@ -103,18 +103,9 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         //add an array of graphics objects to graphics overlay
         self.pointGraphicOverlay.graphics.addObjects(from: self.graphicsArray)
         
-        //get an array of Point from graphicsArray and assign it to arrayOfPoints
-        let arrayOfPoints:[AGSPoint] = self.graphicsArray.map{$0.geometry as! AGSPoint}
-        
-        //create a multipoint with an array of points
-        let multipoint = AGSMultipointBuilder.init(points: arrayOfPoints)
-        
-        //get extent of multipoint
-        let areaCoveringGraphics = multipoint.extent
-        
-        //create viewpoint from the extent of multipoint
-        let viewpoint = AGSViewpoint.init(targetExtent: areaCoveringGraphics)
-        
+        //create an instance of view point from the extent of graphics overlay
+        let viewpoint = AGSViewpoint.init(targetExtent: self.pointGraphicOverlay.extent)
+
         //set map view point
         self.mapView.setViewpoint(viewpoint)
     }
@@ -177,7 +168,7 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         //close keyboard
         self.searchBar.resignFirstResponder()
         
-        //remove existing graphics from graphics overlay
+        //remove existing graphics
         self.pointGraphicOverlay.graphics.removeAllObjects()
         self.graphicsArray.removeAll()
         
