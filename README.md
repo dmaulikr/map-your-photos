@@ -6,11 +6,11 @@ This project is a proof of concept to demonstrate the capabilities of ArcGIS pla
 *Submitted to [Runtime Quartz Hackathon 2016](https://blogs.esri.com/esri/arcgis/2017/01/06/runtime-quartz-hackathon-results/).*
 
 ## Features
-* Search photos by tag and display geo-referenced photos on map for the specified tag. The data is derived from Flickr public feed.
+* Search photos by tag, derive geo-referenced photos from Flickr feed for the given tag, and display them as graphics on map.
 
   <img src="https://cloud.githubusercontent.com/assets/8196343/23489379/e3adae46-fea6-11e6-9eb6-4c6b7444fda2.png" alt="alt text" width="250" height="400">
 
-* Select graphics on map to display popup, which contains description of the selected photos.
+* Select graphic(s) on map to display popup(s), which contains description of the selected photo(s).
 
   <img src="https://cloud.githubusercontent.com/assets/8196343/23489403/0567b752-fea7-11e6-8d64-11fe1c102e90.png" alt="alt text" width="250" height="400">
 
