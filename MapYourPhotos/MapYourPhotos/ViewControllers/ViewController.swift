@@ -16,6 +16,7 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
     private var map: AGSMap!
     private var pointGraphicOverlay: AGSGraphicsOverlay!
     private var popupsVC:AGSPopupsViewController!
+    private var graphicsArray = [AGSGraphic]()
     private var VECTOR_TILE_URL = URL(string:"https://basemaps.arcgis.com/v1/arcgis/rest/services/World_Basemap/VectorTileServer")!
     
     override func viewDidLoad() {
@@ -34,9 +35,6 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         //assign map to the map view
         self.mapView.map = self.map
         
-        //set property of the struct
-        SharingManager.sharedInstance.map = self.map
-        
         //create an instance of graphics overlay
         self.pointGraphicOverlay = AGSGraphicsOverlay()
         self.mapView.graphicsOverlays.add(self.pointGraphicOverlay)
@@ -46,7 +44,6 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         
         //add self as the search bar delegate
         self.searchBar.delegate = self
-        
     }
     
     
@@ -71,15 +68,6 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
     //MARK: - Create graphics and add them to map
     
     func addGraphics (arrayOfItems: NSArray) {
-        //update property of the struct
-        if(SharingManager.sharedInstance.geoElementsArray.count > 1) {
-            SharingManager.sharedInstance.geoElementsArray.removeAll()
-        }
-        
-        //mutable arrays
-        var graphicsArray = [AGSGraphic]()
-        var arrayOfPoints = [AGSPoint]()
-        
         //picture marker symbol
         let pictureMarkerSymbol = AGSPictureMarkerSymbol.init(image: #imageLiteral(resourceName: "flickr.png"))
         pictureMarkerSymbol.height = 20
@@ -94,7 +82,7 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
             let point = AGSPoint(x: longitude!, y: latitude!, spatialReference: AGSSpatialReference.wgs84())
             
             //attributes
-            let attributes = NSMutableDictionary()
+            var attributes = [String:Any]()
             attributes["description"] = (item as AnyObject).object(forKey:"description") as! String
             let dateTaken = (item as AnyObject).object(forKey:"date_taken") as! String
             let dateFormatter = DateFormatter.init()
@@ -102,20 +90,21 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
             let dateObj = dateFormatter.date(from: dateTaken)
             attributes["date"] = dateObj
             
-            //create a graphic with point, symbol and attributes
-            let graphic = AGSGraphic.init(geometry: point, symbol:pictureMarkerSymbol, attributes: (attributes as NSDictionary) as? [String : Any])
+            //create a graphic
+            let graphic = AGSGraphic.init(geometry: point, symbol:pictureMarkerSymbol, attributes: attributes)
             
-            //populate arrays
-            graphicsArray.append(graphic)
-            arrayOfPoints.append(point)
-            SharingManager.sharedInstance.geoElementsArray.append(graphic)
+            //populate array
+            self.graphicsArray.append(graphic)
         }
         
         //dismiss progress hud
         SVProgressHUD.dismiss()
         
         //add an array of graphics objects to graphics overlay
-        self.pointGraphicOverlay.graphics.addObjects(from: (graphicsArray as [AnyObject]))
+        self.pointGraphicOverlay.graphics.addObjects(from: self.graphicsArray)
+        
+        //get an array of Point from graphicsArray and assign it to arrayOfPoints
+        let arrayOfPoints:[AGSPoint] = self.graphicsArray.map{$0.geometry as! AGSPoint}
         
         //create a multipoint with an array of points
         let multipoint = AGSMultipointBuilder.init(points: arrayOfPoints)
@@ -170,7 +159,11 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         //present view controller if pointGraphicOverlay contains graphics
         if self.pointGraphicOverlay.graphics.count > 0 {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "SaveMapViewController") as UIViewController
+            let controller = storyboard.instantiateViewController(withIdentifier: "SaveMapViewController") as! SaveMapViewController
+            controller.map = self.map
+            //create an array of AGSGeoElement from graphicsArray and assign it to geoElementsArray
+            let geoElementsArray = self.graphicsArray.map{$0 as AGSGeoElement}
+            controller.geoElementsArray = geoElementsArray
             self.present(controller, animated: true, completion: nil)
         } else {
             SVProgressHUD.showInfo(withStatus: "There is no data on map to save.")
@@ -186,6 +179,7 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         
         //remove existing graphics from graphics overlay
         self.pointGraphicOverlay.graphics.removeAllObjects()
+        self.graphicsArray.removeAll()
         
         let tag = self.searchBar.text! as String
         
@@ -200,13 +194,13 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
             
             //fetch data
             let session = URLSession.shared
-            (session.dataTask(with: flickrURL!, completionHandler: { (data: Data?, response, error) -> Void in
+            (session.dataTask(with: flickrURL!, completionHandler: { [weak self] (data: Data?, response, error) -> Void in
                 if let error = error {
                     //show error
                     SVProgressHUD.showError(withStatus: "\(error.localizedDescription)")
                 } else {
                     //convert Data to JSON objects
-                    self.convertDataToObject(jsonData: data!)
+                    self?.convertDataToObject(jsonData: data!)
                 }
             })).resume()
         } else {
