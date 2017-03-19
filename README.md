@@ -1,4 +1,3 @@
-
 ## About
 
 This project is a proof of concept to demonstrate the capabilities of ArcGIS platform to visualize and store geo-referenced images from social media platforms such as Flickr.
@@ -8,7 +7,7 @@ This project is a proof of concept to demonstrate the capabilities of ArcGIS pla
 ## Features
 * Search photos by tag, derive geo-referenced photos from Flickr feed for the given tag, and display them as graphics on map.
 
-  <img src="https://cloud.githubusercontent.com/assets/8196343/23489379/e3adae46-fea6-11e6-9eb6-4c6b7444fda2.png" alt="alt text" width="250" height="400">
+  <img src="https://cloud.githubusercontent.com/assets/8196343/24078836/f4d2ad4c-0c35-11e7-8b57-1c24e2cab204.png" alt="alt text" width="250" height="400">
 
 * Select graphic(s) on map to display popup(s), which contains description of the selected photo(s).
 
