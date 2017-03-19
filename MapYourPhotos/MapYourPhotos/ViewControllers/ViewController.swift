@@ -70,7 +70,7 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
     //MARK: - Create graphics and add them to map
     
     func addGraphics (arrayOfItems: NSArray) {
-        //picture marker symbol
+        //instantiate picture marker symbol
         let pictureMarkerSymbol = AGSPictureMarkerSymbol.init(image: #imageLiteral(resourceName: "flickr.png"))
         pictureMarkerSymbol.height = 30
         pictureMarkerSymbol.width = 30
@@ -83,7 +83,7 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
             //create an instance of point
             let point = AGSPoint(x: longitude!, y: latitude!, spatialReference: AGSSpatialReference.wgs84())
             
-            //attributes
+            //create a dictionary to hold attributes of the item
             var attributes = [String:Any]()
             attributes["description"] = (item as AnyObject).object(forKey:"description") as! String
             let dateTaken = (item as AnyObject).object(forKey:"date_taken") as! String
@@ -114,6 +114,7 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
     // MARK: - Create Popup
     
     private func popupContent(result: AGSIdentifyGraphicsOverlayResult) {
+        //create an array to hold popup
         var popupArray = [AGSPopup]()
         
         //create popup for each element

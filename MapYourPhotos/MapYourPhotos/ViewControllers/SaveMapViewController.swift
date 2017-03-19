@@ -13,9 +13,6 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
-    private var featureCollectionTable: AGSFeatureCollectionTable!
-    private var featureCollectionLayer: AGSFeatureCollectionLayer!
-    private var fieldsArray = [AGSField]()
     var map: AGSMap!
     var geoElementsArray: [AGSGeoElement]!
     private let clientID = "TxFyAuhPDc82MPNR"
@@ -30,13 +27,6 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
         //looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SaveMapViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
-        
-        //run tasks in background thread
-        DispatchQueue.global(qos: .userInteractive).async {
-            self.createFields()
-            self.createFeatureLayer()
-        }
-        
     }
     
     
@@ -58,19 +48,12 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    //MARK: - Create fields
-    
-    func createFields () {
-        let descriptionField = AGSField.textField(withName: "description", alias: "description", length: 500)
-        let dateField = AGSField.dateField(withName: "date", alias: "date")
-        self.fieldsArray.append(descriptionField)
-        self.fieldsArray.append(dateField)
-    }
-    
-    
     //MARK: - Save map to portal
     
     func saveMapToPortal(title:String!, tags:[String]!, description:String?) {
+        if self.map.operationalLayers.count == 0 {
+            self.createFeatureLayer()
+        }
         //Auth Manager settings
         let config = AGSOAuthConfiguration(portalURL: nil, clientID: self.clientID, redirectURL: nil)
         AGSAuthenticationManager.shared().oAuthConfigurations.add(config)
@@ -117,22 +100,29 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Create feature layer from feature collection and add it to map
     
     func createFeatureLayer() {
+        //array of fields
+        var fieldsArray = [AGSField]()
+        let descriptionField = AGSField.textField(withName: "description", alias: "description", length: 500)
+        let dateField = AGSField.dateField(withName: "date", alias: "date")
+        fieldsArray.append(descriptionField)
+        fieldsArray.append(dateField)
+        
         //initialize feature collection table with geo elements and its fields
-        self.featureCollectionTable = AGSFeatureCollectionTable.init(geoElements: self.geoElementsArray, fields: self.fieldsArray)
+        let featureCollectionTable = AGSFeatureCollectionTable.init(geoElements: self.geoElementsArray, fields: fieldsArray)
         
         //since feature collection table initialization will take some time to complete
-        self.featureCollectionTable.load(completion: {(error) -> Void in
+        featureCollectionTable.load(completion: {(error) -> Void in
             if let error = error {
                 SVProgressHUD.showError(withStatus: "\(error.localizedDescription)")
             } else {
                 //initialize feature collection
-                let featureCollection = AGSFeatureCollection.init(featureCollectionTables: [self.featureCollectionTable])
+                let featureCollection = AGSFeatureCollection.init(featureCollectionTables: [featureCollectionTable])
                 
                 //initialize feature collection layer
-                self.featureCollectionLayer = AGSFeatureCollectionLayer.init(featureCollection: featureCollection)
+                let featureCollectionLayer = AGSFeatureCollectionLayer.init(featureCollection: featureCollection)
                 
                 //add the feature collection layer to map
-                self.map.operationalLayers.add(self.featureCollectionLayer)
+                self.map.operationalLayers.add(featureCollectionLayer)
             }
         })
     }
