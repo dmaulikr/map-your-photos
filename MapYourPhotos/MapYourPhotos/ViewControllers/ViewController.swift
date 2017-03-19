@@ -211,12 +211,10 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
             self.mapView.identify(self.pointGraphicOverlay, screenPoint: screenPoint, tolerance: tolerance, returnPopupsOnly: false, maximumResults: 10) { (result: AGSIdentifyGraphicsOverlayResult) -> Void in
                 if let error = result.error {
                     SVProgressHUD.showError(withStatus: error.localizedDescription)
-                } else {
-                    //if graphic is found then create popup
+                } else { //if graphic is found then create popup
                     if(result.graphics.count > 0) {
                         self.popupContent(result: result)
-                    } else {
-                        //hide keyboard
+                    } else { //hide keyboard
                         self.searchBar.resignFirstResponder()
                     }
                 }
