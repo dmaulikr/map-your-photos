@@ -103,10 +103,8 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         //add an array of graphics objects to graphics overlay
         self.pointGraphicOverlay.graphics.addObjects(from: self.graphicsArray)
         
-        //create an instance of view point from the extent of graphics overlay
+        //set map view location
         let viewpoint = AGSViewpoint.init(targetExtent: self.pointGraphicOverlay.extent)
-
-        //set map view point
         self.mapView.setViewpoint(viewpoint)
     }
     
