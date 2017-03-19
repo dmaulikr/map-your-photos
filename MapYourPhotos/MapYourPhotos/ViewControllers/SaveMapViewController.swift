@@ -10,7 +10,6 @@ import UIKit
 import ArcGIS
 
 class SaveMapViewController: UIViewController, UITextFieldDelegate {
-    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -19,7 +18,6 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
     private var fieldsArray = [AGSField]()
     var map: AGSMap!
     var geoElementsArray: [AGSGeoElement]!
-    
     private let clientID = "TxFyAuhPDc82MPNR"
     private let portalURL = URL(string:"https://www.arcgis.com")!
     private let webmapURL = "https://www.arcgis.com/home/webmap/viewer.html?webmap="
@@ -95,7 +93,6 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
                 if let description = description {
                     portalItem.itemDescription = description
                 }
-                
                 do {
                     //initialize an AGSPortalItemContentParameter object with map json.
                     let contentParams = try AGSPortalItemContentParameters.init(json: self.map.toJSON())
