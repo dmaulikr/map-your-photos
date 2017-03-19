@@ -3,16 +3,14 @@
 
 This project is a proof of concept to demonstrate the capabilities of ArcGIS platform to visualize and store geo-referenced images from social media platforms such as Flickr.
 
-This mapping application uses ArcGIS runtime SDK for iOS to display geo-referenced images on map, which is derived from Flickr public feed and to store the webmap to cloud ArcGIS Online.
-
 *Submitted to [Runtime Quartz Hackathon 2016](https://blogs.esri.com/esri/arcgis/2017/01/06/runtime-quartz-hackathon-results/).*
 
 ## Features
-* Search photos by tag.
+* Search photos by tag and display geo-referenced photos on map for the specified tag. The data is derived from Flickr public feed.
 
   <img src="https://cloud.githubusercontent.com/assets/8196343/23489379/e3adae46-fea6-11e6-9eb6-4c6b7444fda2.png" alt="alt text" width="250" height="400">
 
-* Popup contains photo description.
+* Select graphics on map to display popup, which contains description of the selected photos.
 
   <img src="https://cloud.githubusercontent.com/assets/8196343/23489403/0567b752-fea7-11e6-8d64-11fe1c102e90.png" alt="alt text" width="250" height="400">
 
