@@ -70,8 +70,8 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
     func addGraphics (arrayOfItems: NSArray) {
         //picture marker symbol
         let pictureMarkerSymbol = AGSPictureMarkerSymbol.init(image: #imageLiteral(resourceName: "flickr.png"))
-        pictureMarkerSymbol.height = 20
-        pictureMarkerSymbol.width = 20
+        pictureMarkerSymbol.height = 30
+        pictureMarkerSymbol.width = 30
         
         for item in arrayOfItems {
             let longStr = (item as AnyObject).object(forKey: "longitude") as! String
@@ -181,17 +181,21 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
             let createUrl = "https://api.flickr.com/services/feeds/geo?tagmode=all&tags=\(tag)&format=json&nojsoncallback=1"
             let flickrURL = URL(string: createUrl)
             
-            //fetch data
-            let session = URLSession.shared
-            (session.dataTask(with: flickrURL!, completionHandler: { [weak self] (data: Data?, response, error) -> Void in
-                if let error = error {
-                    //show error
-                    SVProgressHUD.showError(withStatus: "\(error.localizedDescription)")
-                } else {
-                    //convert Data to JSON objects
-                    self?.convertDataToObject(jsonData: data!)
-                }
-            })).resume()
+            //fetch data in background thread
+            DispatchQueue.global(qos: .utility).async {
+                let session = URLSession.shared
+                (session.dataTask(with: flickrURL!, completionHandler: { [weak self] (data: Data?, response, error) -> Void in
+                    if let error = error {
+                        //show error in main thread
+                        DispatchQueue.main.async {
+                            SVProgressHUD.showError(withStatus: "\(error.localizedDescription)")
+                        }
+                    } else {
+                        //convert Data to JSON objects
+                        self?.convertDataToObject(jsonData: data!)
+                    }
+                })).resume()
+            }
         } else {
             //tags not valid
             SVProgressHUD.showInfo(withStatus: "Not a valid input. Please try again.")
@@ -211,10 +215,12 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
             self.mapView.identify(self.pointGraphicOverlay, screenPoint: screenPoint, tolerance: tolerance, returnPopupsOnly: false, maximumResults: 10) { (result: AGSIdentifyGraphicsOverlayResult) -> Void in
                 if let error = result.error {
                     SVProgressHUD.showError(withStatus: error.localizedDescription)
-                } else { //if graphic is found then create popup
+                } else {
+                    //if graphic is found then create popup
                     if(result.graphics.count > 0) {
                         self.popupContent(result: result)
-                    } else { //hide keyboard
+                    } else {
+                        //hide keyboard
                         self.searchBar.resignFirstResponder()
                     }
                 }

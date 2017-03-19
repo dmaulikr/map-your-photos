@@ -32,7 +32,7 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(tap)
         
         //run tasks in background thread
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .userInteractive).async {
             self.createFields()
             self.createFeatureLayer()
         }
