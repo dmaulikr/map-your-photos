@@ -14,12 +14,11 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
-    
     private var featureCollectionTable: AGSFeatureCollectionTable!
     private var featureCollectionLayer: AGSFeatureCollectionLayer!
-    
     private var fieldsArray = [AGSField]()
-    private var map: AGSMap!
+    var map: AGSMap!
+    var geoElementsArray: [AGSGeoElement]!
     
     private let clientID = "TxFyAuhPDc82MPNR"
     private let portalURL = URL(string:"https://www.arcgis.com")!
@@ -33,9 +32,6 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
         //looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SaveMapViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
-        
-        //get property of the struct
-        self.map = SharingManager.sharedInstance.map
         
         //run tasks in background thread
         DispatchQueue.global(qos: .userInitiated).async {
@@ -125,7 +121,7 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
     
     func createFeatureLayer() {
         //initialize feature collection table with geo elements and its fields
-        self.featureCollectionTable = AGSFeatureCollectionTable.init(geoElements: SharingManager.sharedInstance.geoElementsArray, fields: self.fieldsArray)
+        self.featureCollectionTable = AGSFeatureCollectionTable.init(geoElements: self.geoElementsArray, fields: self.fieldsArray)
         
         //since feature collection table initialization will take some time to complete
         self.featureCollectionTable.load(completion: {(error) -> Void in

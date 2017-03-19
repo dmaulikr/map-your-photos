@@ -18,7 +18,6 @@
 		BAB8E00B1E65523500FCADB3 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8E0051E65523500FCADB3 /* SVProgressHUD.m */; };
 		BAB8E00C1E65523500FCADB3 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8E0071E65523500FCADB3 /* SVRadialGradientLayer.m */; };
 		BAD29C3A1E65559300B1D3A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD29C381E65559300B1D3A5 /* AppDelegate.swift */; };
-		BAD29C3B1E65559300B1D3A5 /* SharingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD29C391E65559300B1D3A5 /* SharingManager.swift */; };
 		BAD29C3D1E6555BD00B1D3A5 /* SaveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD29C3C1E6555BD00B1D3A5 /* SaveMapViewController.swift */; };
 		BAD29C401E65568600B1D3A5 /* flickr.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD29C3F1E65568600B1D3A5 /* flickr.png */; };
 		BAD29C431E65578F00B1D3A5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD29C421E65578F00B1D3A5 /* QuartzCore.framework */; };
@@ -43,7 +42,6 @@
 		BAB8E0061E65523500FCADB3 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		BAB8E0071E65523500FCADB3 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		BAD29C381E65559300B1D3A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BAD29C391E65559300B1D3A5 /* SharingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingManager.swift; sourceTree = "<group>"; };
 		BAD29C3C1E6555BD00B1D3A5 /* SaveMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMapViewController.swift; sourceTree = "<group>"; };
 		BAD29C3F1E65568600B1D3A5 /* flickr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flickr.png; sourceTree = "<group>"; };
 		BAD29C421E65578F00B1D3A5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -142,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				BAD29C381E65559300B1D3A5 /* AppDelegate.swift */,
-				BAD29C391E65559300B1D3A5 /* SharingManager.swift */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -241,7 +238,6 @@
 				BAD29C3A1E65559300B1D3A5 /* AppDelegate.swift in Sources */,
 				BAB8DFFB1E65522D00FCADB3 /* ViewController.swift in Sources */,
 				BAD29C3D1E6555BD00B1D3A5 /* SaveMapViewController.swift in Sources */,
-				BAD29C3B1E65559300B1D3A5 /* SharingManager.swift in Sources */,
 				BAB8E00C1E65523500FCADB3 /* SVRadialGradientLayer.m in Sources */,
 				BAB8E00B1E65523500FCADB3 /* SVProgressHUD.m in Sources */,
 				BAB8E0081E65523500FCADB3 /* SVIndefiniteAnimatedView.m in Sources */,
