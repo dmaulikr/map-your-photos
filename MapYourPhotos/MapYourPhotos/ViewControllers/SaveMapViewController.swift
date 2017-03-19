@@ -165,14 +165,10 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
         if title == "" || tags == "" {
             SVProgressHUD.showError(withStatus: "Title and tags are required fields.")
         } else {  //title and tags are not empty
-            
-            //create an array of string
-            var tagsArray = tags.components(separatedBy: ",")
-        
-            tagsArray = tagsArray.map ({
+            let tagsArray = tags.components(separatedBy: ",").map {
                 //remove white space prefix in the string
                 $0.trimmingCharacters(in: CharacterSet.whitespaces)
-            })
+            }
             
             var itemDescription: String?
             if !self.descriptionTextView.text.isEmpty {
