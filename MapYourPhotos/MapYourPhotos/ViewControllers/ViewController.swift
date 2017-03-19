@@ -58,6 +58,8 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
             if items.count > 0 {
                 //create graphics and add them to map
                 self.addGraphics(arrayOfItems: items)
+            } else {
+                SVProgressHUD.showInfo(withStatus: "No results found. Try another tag.")
             }
         } catch {
              SVProgressHUD.showInfo(withStatus: "Could not get data. Try another tag.")
@@ -186,10 +188,8 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
                 let session = URLSession.shared
                 (session.dataTask(with: flickrURL!, completionHandler: { [weak self] (data: Data?, response, error) -> Void in
                     if let error = error {
-                        //show error in main thread
-                        DispatchQueue.main.async {
-                            SVProgressHUD.showError(withStatus: "\(error.localizedDescription)")
-                        }
+                      SVProgressHUD.showError(withStatus: "\(error.localizedDescription)")
+                        
                     } else {
                         //convert Data to JSON objects
                         self?.convertDataToObject(jsonData: data!)
