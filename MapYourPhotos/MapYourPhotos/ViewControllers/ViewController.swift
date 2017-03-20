@@ -12,7 +12,6 @@ import ArcGIS
 class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDelegate, AGSPopupsViewControllerDelegate {
     @IBOutlet weak var mapView: AGSMapView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
     private var map: AGSMap!
     private var pointGraphicOverlay: AGSGraphicsOverlay!
     private var popupsVC:AGSPopupsViewController!
@@ -146,19 +145,22 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
 
     
     //ACTION: - Navigation
-
-    @IBAction func saveAction(_ sender: Any) {
-        //present view controller if pointGraphicOverlay contains graphics
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard identifier == "toSaveMapVC" else { return true }
         if self.pointGraphicOverlay.graphics.count > 0 {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "SaveMapViewController") as! SaveMapViewController
-            controller.map = self.map
-            //create an array of AGSGeoElement from graphicsArray and assign it to geoElementsArray
+            return true
+        }
+        SVProgressHUD.showInfo(withStatus: "There is no data on map to save.")
+        return false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toSaveMapVC" {
             let geoElementsArray = self.graphicsArray.map{$0 as AGSGeoElement}
-            controller.geoElementsArray = geoElementsArray
-            self.present(controller, animated: true, completion: nil)
-        } else {
-            SVProgressHUD.showInfo(withStatus: "There is no data on map to save.")
+            let saveMapVC = segue.destination as! SaveMapViewController
+            saveMapVC.viewControllerDelegate = saveMapVC
+            saveMapVC.viewControllerDelegate?.passData(map: self.map, geoElementsArray: geoElementsArray)
         }
     }
     
@@ -238,6 +240,12 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         self.popupsVC = nil
     }
 
+}
+
+//Protocol to send data from ViewController to SaveMapViewController
+
+protocol ViewControllerDataProtocol {
+    func passData(map: AGSMap, geoElementsArray: [AGSGeoElement])
 }
 
 
