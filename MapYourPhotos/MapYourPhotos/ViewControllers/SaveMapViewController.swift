@@ -9,11 +9,11 @@
 import UIKit
 import ArcGIS
 
-class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControllerDataProtocol {
+class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControllerDataDelegate {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
-    var viewControllerDelegate: ViewControllerDataProtocol?
+    var viewControllerDelegate: ViewControllerDataDelegate?
     private var map: AGSMap!
     private var geoElementsArray: [AGSGeoElement]!
     private let clientID = "TxFyAuhPDc82MPNR"
@@ -180,7 +180,7 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
     }
     
     
-    //MARK - ViewControllerDataProtocol
+    //MARK - ViewControllerDataProtocol method
     
     func passData(map: AGSMap, geoElementsArray: [AGSGeoElement]) {
         if(self.viewControllerDelegate != nil) {
