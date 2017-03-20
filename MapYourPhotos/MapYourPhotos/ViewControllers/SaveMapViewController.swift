@@ -9,12 +9,13 @@
 import UIKit
 import ArcGIS
 
-class SaveMapViewController: UIViewController, UITextFieldDelegate {
+class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControllerDataProtocol {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
-    var map: AGSMap!
-    var geoElementsArray: [AGSGeoElement]!
+    var viewControllerDelegate: ViewControllerDataProtocol?
+    private var map: AGSMap!
+    private var geoElementsArray: [AGSGeoElement]!
     private let clientID = "TxFyAuhPDc82MPNR"
     private let portalURL = URL(string:"https://www.arcgis.com")!
     private let webmapURL = "https://www.arcgis.com/home/webmap/viewer.html?webmap="
@@ -176,6 +177,16 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate {
     @IBAction func cancelAction(_ sender: Any) {
         //dismiss view controller
         self.dismiss(animated: false, completion: nil)
+    }
+    
+    
+    //MARK - ViewControllerDataProtocol
+    
+    func passData(map: AGSMap, geoElementsArray: [AGSGeoElement]) {
+        if(self.viewControllerDelegate != nil) {
+            self.map = map
+            self.geoElementsArray = geoElementsArray
+        }
     }
     
 }
