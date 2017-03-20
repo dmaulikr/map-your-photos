@@ -5,7 +5,7 @@
 *Submitted to [Runtime Quartz Hackathon 2016](https://blogs.esri.com/esri/arcgis/2017/01/06/runtime-quartz-hackathon-results/).*
 
 ## Features
-* Search photos by tag and derive geo-referenced photos from Flickr public feed for the given tag and displays them as  graphics on map.
+* Derive geo-referenced photos from Flickr public feed for the given tag and displays them as  graphics on map.
 
   <img src="https://cloud.githubusercontent.com/assets/8196343/24078836/f4d2ad4c-0c35-11e7-8b57-1c24e2cab204.png" alt="alt text" width="250" height="400">
 
