@@ -2,10 +2,6 @@
 
 <b>Map Your Photos</b> is an iPhone application that utilizes ArcGIS platform to visualize and store geo-referenced pictures from [Flickr](https://www.flickr.com/) public feed.
 
-Technology used: ArcGIS runtime SDK for iOS, ArcGIS Online, Flickr
-Submitted to: [Runtime Quartz Hackathon 2016](https://blogs.esri.com/esri/arcgis/2017/01/06/runtime-quartz-hackathon-results/)
-Category: Consumer application
-
 ## Features
 * Derive geo-referenced photos from Flickr public feed for the given tag and display them as  graphics on map.
 
