@@ -144,7 +144,7 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
     }
 
     
-    //ACTION: - Navigation
+    //MARK: - Navigation
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard identifier == "toSaveMapVC" else { return true }
@@ -244,7 +244,7 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
 
 //Protocol to send data from ViewController to SaveMapViewController
 
-protocol ViewControllerDataProtocol {
+protocol ViewControllerDataDelegate {
     func passData(map: AGSMap, geoElementsArray: [AGSGeoElement])
 }
 
