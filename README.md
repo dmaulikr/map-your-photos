@@ -1,15 +1,15 @@
 ## About
 
-This project is a proof of concept to demonstrate the capabilities of ArcGIS platform to visualize and store geo-referenced images from social media platforms such as Flickr.
+<i>Map Your Photos</i> utilizes ArcGIS platform to visualize and store geo-referenced pictures from [Flickr](https://www.flickr.com/) public feed.
 
 *Submitted to [Runtime Quartz Hackathon 2016](https://blogs.esri.com/esri/arcgis/2017/01/06/runtime-quartz-hackathon-results/).*
 
 ## Features
-* Search photos by tag, derive geo-referenced photos from Flickr feed for the given tag, and display them as graphics on map.
+* Search photos by tag and derive geo-referenced photos from Flickr public feed for the given tag and displays them as  graphics on map.
 
   <img src="https://cloud.githubusercontent.com/assets/8196343/24078836/f4d2ad4c-0c35-11e7-8b57-1c24e2cab204.png" alt="alt text" width="250" height="400">
 
-* Select graphic(s) on map to display popup(s), which contains description of the selected photo(s).
+* Select one or more graphics on map to display popup view controller, which contains description of the selected photos.
 
   <img src="https://cloud.githubusercontent.com/assets/8196343/23489403/0567b752-fea7-11e6-8d64-11fe1c102e90.png" alt="alt text" width="250" height="400">
 
