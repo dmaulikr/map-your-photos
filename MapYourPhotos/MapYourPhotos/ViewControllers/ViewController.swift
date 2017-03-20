@@ -9,6 +9,10 @@
 import UIKit
 import ArcGIS
 
+protocol ViewControllerDataDelegate {
+    func passData(map: AGSMap, geoElementsArray: [AGSGeoElement])
+}
+
 class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDelegate, AGSPopupsViewControllerDelegate {
     @IBOutlet weak var mapView: AGSMapView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -240,12 +244,6 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         self.popupsVC = nil
     }
 
-}
-
-//Protocol to send data from ViewController to SaveMapViewController
-
-protocol ViewControllerDataDelegate {
-    func passData(map: AGSMap, geoElementsArray: [AGSGeoElement])
 }
 
 
