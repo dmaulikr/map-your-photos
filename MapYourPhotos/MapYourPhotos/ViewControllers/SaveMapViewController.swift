@@ -52,6 +52,7 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
     //MARK: - Save map to portal
     
     func saveMapToPortal(title:String!, tags:[String]!, description:String?) {
+        //to avoid adding redudant data on map.
         if self.map.operationalLayers.count == 0 {
             self.createFeatureLayer()
         }
@@ -129,7 +130,7 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
     }
     
     
-    //MARK: - Present an alert view controller when map is saved
+    //MARK: - Present an alert view controller when webmap is saved
     
     private func showSuccess() {
         let alertController = UIAlertController(title: "Saved successfully", message: nil, preferredStyle: UIAlertControllerStyle.alert)
@@ -180,7 +181,7 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
     }
     
     
-    //MARK - ViewControllerDataProtocol method
+    //MARK - ViewControllerDataDelegate method
     
     func passData(map: AGSMap, geoElementsArray: [AGSGeoElement]) {
         if(self.viewControllerDelegate != nil) {

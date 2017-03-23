@@ -49,7 +49,7 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         self.searchBar.delegate = self
     }
     
-    
+
     //MARK: - Convert Data to JSON objects
     
     func convertDataToObject(jsonData: Data) {
@@ -152,6 +152,8 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         guard identifier == "toSaveMapVC" else { return true }
+        
+        //perform segue if the list of graphics in the graphics overlay is not empty
         if self.pointGraphicOverlay.graphics.count > 0 {
             return true
         }
@@ -164,6 +166,7 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
             let geoElementsArray = self.graphicsArray.map{$0 as AGSGeoElement}
             let saveMapVC = segue.destination as! SaveMapViewController
             saveMapVC.viewControllerDelegate = saveMapVC
+            //send data to SaveMapViewController using ViewControllerDataDelegate
             saveMapVC.viewControllerDelegate?.passData(map: self.map, geoElementsArray: geoElementsArray)
         }
     }
