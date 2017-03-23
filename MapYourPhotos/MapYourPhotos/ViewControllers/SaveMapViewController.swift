@@ -31,7 +31,7 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
     }
     
     
-    //MARK: - Calls this function when the tap is recognized.
+    //MARK: - Calls this method when the tap is recognized.
     
     func dismissKeyboard() {
         //causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -52,7 +52,7 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
     //MARK: - Save map to portal
     
     func saveMapToPortal(title:String!, tags:[String]!, description:String?) {
-        //to avoid adding redudant data on map.
+        //to avoid duplicate feature layers on map
         if self.map.operationalLayers.count == 0 {
             self.createFeatureLayer()
         }
