@@ -113,7 +113,7 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
         let featureCollectionTable = AGSFeatureCollectionTable.init(geoElements: self.geoElementsArray, fields: fieldsArray)
         
         //since feature collection table initialization will take some time to complete
-        featureCollectionTable.load(completion: {(error) -> Void in
+        featureCollectionTable.load(completion: { [weak self] (error) -> Void in
             if let error = error {
                 SVProgressHUD.showError(withStatus: "\(error.localizedDescription)")
             } else {
@@ -124,7 +124,7 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
                 let featureCollectionLayer = AGSFeatureCollectionLayer.init(featureCollection: featureCollection)
                 
                 //add the feature collection layer to map
-                self.map.operationalLayers.add(featureCollectionLayer)
+                self?.map.operationalLayers.add(featureCollectionLayer)
             }
         })
     }
