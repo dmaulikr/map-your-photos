@@ -19,7 +19,7 @@
 
   <img src="https://cloud.githubusercontent.com/assets/8196343/23490723/ed1708ee-feae-11e6-96d9-74843d608b9f.png" alt="alt text" width="250" height="400">
 
-* Access the saved webmap in ArcGIS Online.
+* Access the saved web map in ArcGIS Online.
 
   <img width="300" alt="agol" src="https://cloud.githubusercontent.com/assets/8196343/23489500/9b5a02a6-fea7-11e6-9caf-8a1e4b272253.png">
 
