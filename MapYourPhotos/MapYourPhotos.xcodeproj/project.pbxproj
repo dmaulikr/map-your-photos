@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BAA0C64F1E769230004A233B /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BAA0C64E1E769230004A233B /* ArcGIS.bundle */; };
 		BAB8DFEC1E65507700FCADB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAB8DFEA1E65507700FCADB3 /* Main.storyboard */; };
 		BAB8DFEE1E65507700FCADB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAB8DFED1E65507700FCADB3 /* Assets.xcassets */; };
 		BAB8DFF11E65507700FCADB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAB8DFEF1E65507700FCADB3 /* LaunchScreen.storyboard */; };
@@ -21,10 +20,10 @@
 		BAD29C3D1E6555BD00B1D3A5 /* SaveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD29C3C1E6555BD00B1D3A5 /* SaveMapViewController.swift */; };
 		BAD29C401E65568600B1D3A5 /* flickr.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD29C3F1E65568600B1D3A5 /* flickr.png */; };
 		BAD29C431E65578F00B1D3A5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD29C421E65578F00B1D3A5 /* QuartzCore.framework */; };
+		BAEA8B521F2987C60034DB35 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BAEA8B511F2987C60034DB35 /* ArcGIS.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BAA0C64E1E769230004A233B /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../../../Library/SDKs/ArcGIS/macOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
 		BAB8DFE31E65507700FCADB3 /* MapYourPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapYourPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAB8DFEB1E65507700FCADB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BAB8DFED1E65507700FCADB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		BAD29C3F1E65568600B1D3A5 /* flickr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flickr.png; sourceTree = "<group>"; };
 		BAD29C421E65578F00B1D3A5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BAD29C441E65579F00B1D3A5 /* MapYourPhotos-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MapYourPhotos-Bridging-Header.h"; sourceTree = "<group>"; };
+		BAEA8B511F2987C60034DB35 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../../../Library/SDKs/ArcGIS/iOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +104,7 @@
 		BAB8DFFC1E65523500FCADB3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				BAA0C64E1E769230004A233B /* ArcGIS.bundle */,
+				BAEA8B511F2987C60034DB35 /* ArcGIS.bundle */,
 				BAB8DFFD1E65523500FCADB3 /* SVProgressHUD */,
 			);
 			path = Library;
@@ -219,7 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAA0C64F1E769230004A233B /* ArcGIS.bundle in Resources */,
+				BAEA8B521F2987C60034DB35 /* ArcGIS.bundle in Resources */,
 				BAD29C401E65568600B1D3A5 /* flickr.png in Resources */,
 				BAB8DFF11E65507700FCADB3 /* LaunchScreen.storyboard in Resources */,
 				BAB8DFEE1E65507700FCADB3 /* Assets.xcassets in Resources */,

@@ -13,14 +13,14 @@ protocol ViewControllerDataDelegate {
     func passData(map: AGSMap, geoElementsArray: [AGSGeoElement])
 }
 
-class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDelegate, AGSPopupsViewControllerDelegate {
+class ViewController: UIViewController {
     @IBOutlet weak var mapView: AGSMapView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
     private var map: AGSMap!
-    private var pointGraphicOverlay: AGSGraphicsOverlay!
-    private var popupsVC:AGSPopupsViewController!
-    private var graphicsArray = [AGSGraphic]()
-    private var VECTOR_TILE_URL = URL(string:"https://basemaps.arcgis.com/v1/arcgis/rest/services/World_Basemap/VectorTileServer")!
+    fileprivate var pointGraphicOverlay: AGSGraphicsOverlay!
+    fileprivate var popupsVC:AGSPopupsViewController!
+    fileprivate var graphicsArray = [AGSGraphic]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,11 +29,8 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         let mapViewBackground = AGSBackgroundGrid.init(color: .white, gridLineColor: .white, gridLineWidth: 5, gridSize: 10)
         self.mapView.backgroundGrid = mapViewBackground
         
-        //create an instance of vector tiled layer
-        let vectorTiledLayer = AGSArcGISVectorTiledLayer.init(url: VECTOR_TILE_URL)
-        
         //create an instance of a map with vector tiled layer as basemap
-        self.map = AGSMap(basemap: AGSBasemap(baseLayer: vectorTiledLayer))
+        self.map = AGSMap(basemap: AGSBasemap.streetsVector())
         
         //assign map to the map view
         self.mapView.map = self.map
@@ -62,10 +59,16 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
                 //create graphics and add them to map
                 self.addGraphics(arrayOfItems: items)
             } else {
-                SVProgressHUD.showInfo(withStatus: "No results found. Try another tag.")
+                //update UI in main thread
+                DispatchQueue.main.async {
+                    SVProgressHUD.showInfo(withStatus: "No results found. Try another tag.")
+                }
             }
         } catch {
-             SVProgressHUD.showInfo(withStatus: "Could not get data. Try another tag.")
+            //update UI in main thread
+            DispatchQueue.main.async {
+                SVProgressHUD.showInfo(withStatus: "Could not get data. Try another tag.")
+            }
         }
     }
     
@@ -102,17 +105,113 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
             self.graphicsArray.append(graphic)
         }
         
-        //dismiss progress hud
-        SVProgressHUD.dismiss()
-        
-        //add an array of graphics objects to graphics overlay
-        self.pointGraphicOverlay.graphics.addObjects(from: self.graphicsArray)
-        
-        //set map view location
-        let viewpoint = AGSViewpoint.init(targetExtent: self.pointGraphicOverlay.extent)
-        self.mapView.setViewpoint(viewpoint)
+        //update UI in main thread
+        DispatchQueue.main.async {
+            //dismiss progress hud
+            SVProgressHUD.dismiss()
+            
+            //add an array of graphics objects to graphics overlay
+            self.pointGraphicOverlay.graphics.addObjects(from: self.graphicsArray)
+            
+            //set map view location
+            let viewpoint = AGSViewpoint.init(targetExtent: self.pointGraphicOverlay.extent)
+            self.mapView.setViewpoint(viewpoint)
+        }
     }
     
+    
+    //MARK: - Navigation
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard identifier == "toSaveMapVC" else { return true }
+        
+        //perform segue if the list of graphics in the graphics overlay is not empty
+        if self.pointGraphicOverlay.graphics.count > 0 {
+            return true
+        }
+        SVProgressHUD.showInfo(withStatus: "There is no data on map to save.")
+        return false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toSaveMapVC" {
+            let geoElementsArray = self.graphicsArray.map{$0 as AGSGeoElement}
+            let saveMapVC = segue.destination as! SaveMapViewController
+            saveMapVC.viewControllerDelegate = saveMapVC
+            //send data to SaveMapViewController using ViewControllerDataDelegate
+            saveMapVC.viewControllerDelegate?.passData(map: self.map, geoElementsArray: geoElementsArray)
+        }
+    }
+
+}
+
+
+
+extension ViewController: UISearchBarDelegate, AGSGeoViewTouchDelegate, AGSPopupsViewControllerDelegate {
+    
+    //MARK: - UISearchBarDelegate methods
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //close keyboard
+        self.searchBar.resignFirstResponder()
+        
+        //remove existing graphics
+        self.pointGraphicOverlay.graphics.removeAllObjects()
+        self.graphicsArray.removeAll()
+        
+        let tag = self.searchBar.text! as String
+        
+        //validation
+        if (!tag.characters.contains(" ")) {
+            //show status
+            SVProgressHUD.show(withStatus: "Fetching data")
+            
+            //URL to fetch data from Flickr public feed
+            let createUrl = "https://api.flickr.com/services/feeds/geo?tagmode=all&tags=\(tag)&format=json&nojsoncallback=1"
+            let flickrURL = URL(string: createUrl)
+            
+            //fetch data in background thread
+            DispatchQueue.global(qos: .utility).async {
+                let session = URLSession.shared
+                (session.dataTask(with: flickrURL!) { [weak self] (data: Data?, response, error) -> Void in
+                    if let error = error {
+                        SVProgressHUD.showError(withStatus: "\(error.localizedDescription)")
+                    } else {
+                        //convert Data to JSON objects
+                        self?.convertDataToObject(jsonData: data!)
+                    }
+                }).resume()
+            }
+        } else {
+            //tags not valid
+            SVProgressHUD.showInfo(withStatus: "No results. Try a different tag.")
+        }
+    }
+    
+    //MARK: - AGSGeoViewTouchDelegate method
+    
+    func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
+        if(self.pointGraphicOverlay.graphics.count == 0) {
+            //hide keyboard
+            self.searchBar.resignFirstResponder()
+        } else {
+            let tolerance:Double = 3
+            //identify graphics on a graphic overlay
+            self.mapView.identify(self.pointGraphicOverlay, screenPoint: screenPoint, tolerance: tolerance, returnPopupsOnly: false, maximumResults: 10) { (result: AGSIdentifyGraphicsOverlayResult) -> Void in
+                if let error = result.error {
+                    SVProgressHUD.showError(withStatus: error.localizedDescription)
+                } else {
+                    //if graphic is found then create popup
+                    if(result.graphics.count > 0) {
+                        self.popupContent(result: result)
+                    } else {
+                        //hide keyboard
+                        self.searchBar.resignFirstResponder()
+                    }
+                }
+            }
+        }
+    }
     
     // MARK: - Create Popup
     
@@ -147,96 +246,6 @@ class ViewController: UIViewController, UISearchBarDelegate, AGSGeoViewTouchDele
         self.present(self.popupsVC, animated: true, completion: nil)
     }
 
-    
-    //MARK: - Navigation
-    
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        guard identifier == "toSaveMapVC" else { return true }
-        
-        //perform segue if the list of graphics in the graphics overlay is not empty
-        if self.pointGraphicOverlay.graphics.count > 0 {
-            return true
-        }
-        SVProgressHUD.showInfo(withStatus: "There is no data on map to save.")
-        return false
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toSaveMapVC" {
-            let geoElementsArray = self.graphicsArray.map{$0 as AGSGeoElement}
-            let saveMapVC = segue.destination as! SaveMapViewController
-            saveMapVC.viewControllerDelegate = saveMapVC
-            //send data to SaveMapViewController using ViewControllerDataDelegate
-            saveMapVC.viewControllerDelegate?.passData(map: self.map, geoElementsArray: geoElementsArray)
-        }
-    }
-    
-    
-    //MARK: - UISearchBarDelegate methods
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //close keyboard
-        self.searchBar.resignFirstResponder()
-        
-        //remove existing graphics
-        self.pointGraphicOverlay.graphics.removeAllObjects()
-        self.graphicsArray.removeAll()
-        
-        let tag = self.searchBar.text! as String
-        
-        //validation
-        if (!tag.characters.contains(" ")) {
-            //show status
-            SVProgressHUD.show(withStatus: "Fetching data")
-            
-            //URL to fetch data from Flickr public feed
-            let createUrl = "https://api.flickr.com/services/feeds/geo?tagmode=all&tags=\(tag)&format=json&nojsoncallback=1"
-            let flickrURL = URL(string: createUrl)
-            
-            //fetch data in background thread
-            DispatchQueue.global(qos: .utility).async {
-                let session = URLSession.shared
-                (session.dataTask(with: flickrURL!, completionHandler: { [weak self] (data: Data?, response, error) -> Void in
-                    if let error = error {
-                      SVProgressHUD.showError(withStatus: "\(error.localizedDescription)")
-                        
-                    } else {
-                        //convert Data to JSON objects
-                        self?.convertDataToObject(jsonData: data!)
-                    }
-                })).resume()
-            }
-        } else {
-            //tags not valid
-            SVProgressHUD.showInfo(withStatus: "Not a valid input. Please try again.")
-        }
-    }
-    
-    
-    //MARK: - AGSGeoViewTouchDelegate method
-    
-    func geoView(_ geoView: AGSGeoView, didTapAtScreenPoint screenPoint: CGPoint, mapPoint: AGSPoint) {
-        if(self.pointGraphicOverlay.graphics.count == 0) {
-            //hide keyboard
-            self.searchBar.resignFirstResponder()
-        } else {
-            let tolerance:Double = 3
-            //identify graphics on a graphic overlay
-            self.mapView.identify(self.pointGraphicOverlay, screenPoint: screenPoint, tolerance: tolerance, returnPopupsOnly: false, maximumResults: 10) { (result: AGSIdentifyGraphicsOverlayResult) -> Void in
-                if let error = result.error {
-                    SVProgressHUD.showError(withStatus: error.localizedDescription)
-                } else {
-                    //if graphic is found then create popup
-                    if(result.graphics.count > 0) {
-                        self.popupContent(result: result)
-                    } else {
-                        //hide keyboard
-                        self.searchBar.resignFirstResponder()
-                    }
-                }
-            }
-        }
-    }
     
     
     //MARK: - AGSPopupsViewControllerDelegate method

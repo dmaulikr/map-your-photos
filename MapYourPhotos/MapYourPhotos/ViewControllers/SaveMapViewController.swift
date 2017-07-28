@@ -9,25 +9,35 @@
 import UIKit
 import ArcGIS
 
-class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControllerDataDelegate {
+class SaveMapViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
+    
     var viewControllerDelegate: ViewControllerDataDelegate?
-    private var map: AGSMap!
-    private var geoElementsArray: [AGSGeoElement]!
-    private let clientID = "TxFyAuhPDc82MPNR"
-    private let portalURL = URL(string:"https://www.arcgis.com")!
-    private let webmapURL = "https://www.arcgis.com/home/webmap/viewer.html?webmap="
+    fileprivate var map: AGSMap!
+    fileprivate var geoElementsArray: [AGSGeoElement]!
+    private var portal: AGSPortal!
+    private var featureCollectionTable: AGSFeatureCollectionTable!
+    
+    private let kClientId = "TxFyAuhPDc82MPNR"
+    private let PORTAL_URL = URL(string:"https://ess.maps.arcgis.com")!
+    private let kURLIdentifier = "MapYourPhotos://auth/"
+    private let kKeychainIdentifier = "MapYourPhotos"
     
     override func viewDidLoad() {
         //add self as the text field delegate
         self.titleTextField.delegate = self
         self.tagsTextField.delegate = self
         
-        //looks for single or multiple taps.
+        //looks for single or multiple taps
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SaveMapViewController.dismissKeyboard))
         self.view.addGestureRecognizer(tap)
+        
+        //Auth Manager settings
+        let config = AGSOAuthConfiguration(portalURL: PORTAL_URL, clientID: kClientId, redirectURL: nil)
+        AGSAuthenticationManager.shared().oAuthConfigurations.add(config)
+        AGSAuthenticationManager.shared().credentialCache.enableAutoSyncToKeychain(withIdentifier: kKeychainIdentifier, accessGroup: nil, acrossDevices: false)
     }
     
     
@@ -39,16 +49,6 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
     }
     
     
-    //MARK: - UITextFieldDelegate method
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //dismiss keyboard
-        self.titleTextField.resignFirstResponder()
-        self.tagsTextField.resignFirstResponder()
-        return true
-    }
-    
-    
     //MARK: - Save map to portal
     
     func saveMapToPortal(title:String!, tags:[String]!, description:String?) {
@@ -56,22 +56,23 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
         if self.map.operationalLayers.count == 0 {
             self.createFeatureLayer()
         }
-        //Auth Manager settings
-        let config = AGSOAuthConfiguration(portalURL: nil, clientID: self.clientID, redirectURL: nil)
-        AGSAuthenticationManager.shared().oAuthConfigurations.add(config)
-        AGSAuthenticationManager.shared().credentialCache.removeAllCredentials()
         
         //instantiate portal
-        let portal = AGSPortal(url: self.portalURL, loginRequired: true)
+        if self.portal == nil {
+            self.portal = AGSPortal(url: PORTAL_URL, loginRequired: true)
+        }
         
-        portal.load(completion: {(error) -> Void in
+        self.portal.load { [weak self] (error) -> Void in
+            guard let weakSelf = self else {
+                return
+            }
             if let error = error {
                 SVProgressHUD.showError(withStatus: "\(error.localizedDescription)")
             } else {
                 SVProgressHUD.show(withStatus: "Saving")
                 
                 //instantiate portal item
-                let portalItem = AGSPortalItem(portal: portal)
+                let portalItem = AGSPortalItem(portal: weakSelf.portal)
                 portalItem.type = AGSPortalItemType.webMap
                 portalItem.title = title
                 portalItem.tags = tags
@@ -80,22 +81,22 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
                 }
                 do {
                     //initialize an AGSPortalItemContentParameter object with map json.
-                    let contentParams = try AGSPortalItemContentParameters.init(json: self.map.toJSON())
+                    let contentParams = try AGSPortalItemContentParameters.init(json: weakSelf.map.toJSON())
                     
                     //add item to portal
-                    portal.user?.add(portalItem, with: contentParams, to: nil, completion: {(error) -> Void in
+                    weakSelf.portal.user?.add(portalItem, with: contentParams, to: nil) {(error) -> Void in
                         if let error = error {
                             SVProgressHUD.showError(withStatus: error.localizedDescription)
                         } else { //success
                             SVProgressHUD.dismiss()
-                            self.showSuccess()
+                            weakSelf.showSuccess()
                         }
-                    })
+                    }
                 } catch {
                     SVProgressHUD.showError(withStatus: error.localizedDescription)
                 }
             }
-        })
+        }
     }
     
     
@@ -110,23 +111,25 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
         fieldsArray.append(dateField)
         
         //initialize feature collection table with geo elements and its fields
-        let featureCollectionTable = AGSFeatureCollectionTable.init(geoElements: self.geoElementsArray, fields: fieldsArray)
+        self.featureCollectionTable = AGSFeatureCollectionTable(geoElements: self.geoElementsArray, fields: fieldsArray)
         
         //since feature collection table initialization will take some time to complete
-        featureCollectionTable.load(completion: { [weak self] (error) -> Void in
+        self.featureCollectionTable.load { [weak self] (error) -> Void in
+            guard let weakSelf = self else {
+                return
+            }
             if let error = error {
                 SVProgressHUD.showError(withStatus: "\(error.localizedDescription)")
             } else {
                 //initialize feature collection
-                let featureCollection = AGSFeatureCollection.init(featureCollectionTables: [featureCollectionTable])
-                
+                let featureCollection = AGSFeatureCollection(featureCollectionTables: [weakSelf.featureCollectionTable])
                 //initialize feature collection layer
-                let featureCollectionLayer = AGSFeatureCollectionLayer.init(featureCollection: featureCollection)
+                let featureCollectionLayer = AGSFeatureCollectionLayer(featureCollection: featureCollection)
                 
                 //add the feature collection layer to map
-                self?.map.operationalLayers.add(featureCollectionLayer)
+                weakSelf.map.operationalLayers.add(featureCollectionLayer)
             }
-        })
+        }
     }
     
     
@@ -135,12 +138,13 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
     private func showSuccess() {
         let alertController = UIAlertController(title: "Saved successfully", message: nil, preferredStyle: UIAlertControllerStyle.alert)
         
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: { [weak self] (action:UIAlertAction!) -> Void in
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel) {(action:UIAlertAction!) -> Void in
+       
             //remove operational layers on map
-            self?.map.operationalLayers.removeAllObjects()
+            self.map.operationalLayers.removeAllObjects()
             //dismiss view controller
-            self?.dismiss(animated: true, completion: nil)
-        })
+            self.dismiss(animated: true, completion: nil)
+        }
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
@@ -179,10 +183,15 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
         //dismiss view controller
         self.dismiss(animated: false, completion: nil)
     }
-    
+
+}
+
+
+
+extension SaveMapViewController: ViewControllerDataDelegate, UITextFieldDelegate {
     
     //MARK - ViewControllerDataDelegate method
-    
+
     func passData(map: AGSMap, geoElementsArray: [AGSGeoElement]) {
         if(self.viewControllerDelegate != nil) {
             self.map = map
@@ -190,4 +199,14 @@ class SaveMapViewController: UIViewController, UITextFieldDelegate, ViewControll
         }
     }
     
+    
+    //MARK: - UITextFieldDelegate method
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //dismiss keyboard
+        self.titleTextField.resignFirstResponder()
+        self.tagsTextField.resignFirstResponder()
+        return true
+    }
+
 }
