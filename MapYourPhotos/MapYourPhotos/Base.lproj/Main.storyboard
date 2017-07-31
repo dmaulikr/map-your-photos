@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lcu-J0-5iX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lcu-J0-5iX">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map ViewVC-->
         <scene sceneID="EHZ-qw-Jci">
             <objects>
-                <viewController storyboardIdentifier="Main" id="lcu-J0-5iX" customClass="ViewController" customModule="MapYourPhotos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main" id="lcu-J0-5iX" customClass="MapViewVC" customModule="MapYourPhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VP5-C0-Zeg"/>
                         <viewControllerLayoutGuide type="bottom" id="TQU-Wg-Hoe"/>
@@ -97,10 +97,10 @@
             </objects>
             <point key="canvasLocation" x="1679.2" y="-20.239880059970016"/>
         </scene>
-        <!--Save Map View Controller-->
+        <!--Map DetailsVC-->
         <scene sceneID="H23-FH-sbf">
             <objects>
-                <viewController storyboardIdentifier="SaveMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KJu-OW-HZv" customClass="SaveMapViewController" customModule="MapYourPhotos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SaveMapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="KJu-OW-HZv" customClass="MapDetailsVC" customModule="MapYourPhotos" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="j8i-2M-Z9W"/>
                         <viewControllerLayoutGuide type="bottom" id="PvA-9O-REb"/>

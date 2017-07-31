@@ -7,45 +7,53 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA0B79531F2DC466001AD766 /* MapDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B79511F2DC466001AD766 /* MapDetailsVC.swift */; };
+		BA0B79541F2DC466001AD766 /* MapViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B79521F2DC466001AD766 /* MapViewVC.swift */; };
+		BA0B79561F2DC6C8001AD766 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B79551F2DC6C8001AD766 /* MapModel.swift */; };
+		BA0B79581F2DCAEC001AD766 /* MapDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B79571F2DCAEC001AD766 /* MapDetailsModel.swift */; };
+		BA0B79691F2EDCAF001AD766 /* flickr.png in Resources */ = {isa = PBXBuildFile; fileRef = BA0B795D1F2EDCAF001AD766 /* flickr.png */; };
+		BA0B796A1F2EDCAF001AD766 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0B79601F2EDCAF001AD766 /* SVIndefiniteAnimatedView.m */; };
+		BA0B796B1F2EDCAF001AD766 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0B79621F2EDCAF001AD766 /* SVProgressAnimatedView.m */; };
+		BA0B796C1F2EDCAF001AD766 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BA0B79641F2EDCAF001AD766 /* SVProgressHUD.bundle */; };
+		BA0B796D1F2EDCAF001AD766 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0B79661F2EDCAF001AD766 /* SVProgressHUD.m */; };
+		BA0B796E1F2EDCAF001AD766 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0B79681F2EDCAF001AD766 /* SVRadialGradientLayer.m */; };
+		BA0B79701F2EDCD6001AD766 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BA0B796F1F2EDCD6001AD766 /* ArcGIS.bundle */; };
 		BAB8DFEC1E65507700FCADB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAB8DFEA1E65507700FCADB3 /* Main.storyboard */; };
 		BAB8DFEE1E65507700FCADB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAB8DFED1E65507700FCADB3 /* Assets.xcassets */; };
 		BAB8DFF11E65507700FCADB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAB8DFEF1E65507700FCADB3 /* LaunchScreen.storyboard */; };
-		BAB8DFFB1E65522D00FCADB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB8DFFA1E65522D00FCADB3 /* ViewController.swift */; };
-		BAB8E0081E65523500FCADB3 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8DFFF1E65523500FCADB3 /* SVIndefiniteAnimatedView.m */; };
-		BAB8E0091E65523500FCADB3 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8E0011E65523500FCADB3 /* SVProgressAnimatedView.m */; };
-		BAB8E00A1E65523500FCADB3 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BAB8E0031E65523500FCADB3 /* SVProgressHUD.bundle */; };
-		BAB8E00B1E65523500FCADB3 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8E0051E65523500FCADB3 /* SVProgressHUD.m */; };
-		BAB8E00C1E65523500FCADB3 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB8E0071E65523500FCADB3 /* SVRadialGradientLayer.m */; };
+		BABFF2D81F2C757500D98534 /* FetchPhotosClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABFF2D71F2C757500D98534 /* FetchPhotosClient.swift */; };
+		BABFF2DF1F2DC2FB00D98534 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABFF2DE1F2DC2FB00D98534 /* GlobalConstants.swift */; };
 		BAD29C3A1E65559300B1D3A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD29C381E65559300B1D3A5 /* AppDelegate.swift */; };
-		BAD29C3D1E6555BD00B1D3A5 /* SaveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD29C3C1E6555BD00B1D3A5 /* SaveMapViewController.swift */; };
-		BAD29C401E65568600B1D3A5 /* flickr.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD29C3F1E65568600B1D3A5 /* flickr.png */; };
 		BAD29C431E65578F00B1D3A5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAD29C421E65578F00B1D3A5 /* QuartzCore.framework */; };
-		BAEA8B521F2987C60034DB35 /* ArcGIS.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BAEA8B511F2987C60034DB35 /* ArcGIS.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA0B79511F2DC466001AD766 /* MapDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDetailsVC.swift; sourceTree = "<group>"; };
+		BA0B79521F2DC466001AD766 /* MapViewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewVC.swift; sourceTree = "<group>"; };
+		BA0B79551F2DC6C8001AD766 /* MapModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
+		BA0B79571F2DCAEC001AD766 /* MapDetailsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDetailsModel.swift; sourceTree = "<group>"; };
+		BA0B795D1F2EDCAF001AD766 /* flickr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flickr.png; sourceTree = "<group>"; };
+		BA0B795F1F2EDCAF001AD766 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		BA0B79601F2EDCAF001AD766 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		BA0B79611F2EDCAF001AD766 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		BA0B79621F2EDCAF001AD766 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		BA0B79631F2EDCAF001AD766 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		BA0B79641F2EDCAF001AD766 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		BA0B79651F2EDCAF001AD766 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		BA0B79661F2EDCAF001AD766 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		BA0B79671F2EDCAF001AD766 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		BA0B79681F2EDCAF001AD766 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		BA0B796F1F2EDCD6001AD766 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../../../Library/SDKs/ArcGIS/iOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
 		BAB8DFE31E65507700FCADB3 /* MapYourPhotos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapYourPhotos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAB8DFEB1E65507700FCADB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BAB8DFED1E65507700FCADB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BAB8DFF01E65507700FCADB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BAB8DFF21E65507700FCADB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BAB8DFFA1E65522D00FCADB3 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BAB8DFFE1E65523500FCADB3 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
-		BAB8DFFF1E65523500FCADB3 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
-		BAB8E0001E65523500FCADB3 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
-		BAB8E0011E65523500FCADB3 /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
-		BAB8E0021E65523500FCADB3 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
-		BAB8E0031E65523500FCADB3 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		BAB8E0041E65523500FCADB3 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		BAB8E0051E65523500FCADB3 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
-		BAB8E0061E65523500FCADB3 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
-		BAB8E0071E65523500FCADB3 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		BABFF2D71F2C757500D98534 /* FetchPhotosClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchPhotosClient.swift; sourceTree = "<group>"; };
+		BABFF2DE1F2DC2FB00D98534 /* GlobalConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		BAD29C381E65559300B1D3A5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BAD29C3C1E6555BD00B1D3A5 /* SaveMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveMapViewController.swift; sourceTree = "<group>"; };
-		BAD29C3F1E65568600B1D3A5 /* flickr.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flickr.png; sourceTree = "<group>"; };
 		BAD29C421E65578F00B1D3A5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BAD29C441E65579F00B1D3A5 /* MapYourPhotos-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MapYourPhotos-Bridging-Header.h"; sourceTree = "<group>"; };
-		BAEA8B511F2987C60034DB35 /* ArcGIS.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ArcGIS.bundle; path = ../../../../../Library/SDKs/ArcGIS/iOS/Frameworks/Static/ArcGIS.framework/Versions/Current/Resources/ArcGIS.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +68,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA0B79501F2DC466001AD766 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BA0B79511F2DC466001AD766 /* MapDetailsVC.swift */,
+				BA0B79521F2DC466001AD766 /* MapViewVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BA0B795B1F2EDCAF001AD766 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BA0B796F1F2EDCD6001AD766 /* ArcGIS.bundle */,
+				BA0B795C1F2EDCAF001AD766 /* Images */,
+				BA0B795E1F2EDCAF001AD766 /* SVProgressHUD */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BA0B795C1F2EDCAF001AD766 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				BA0B795D1F2EDCAF001AD766 /* flickr.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		BA0B795E1F2EDCAF001AD766 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				BA0B795F1F2EDCAF001AD766 /* SVIndefiniteAnimatedView.h */,
+				BA0B79601F2EDCAF001AD766 /* SVIndefiniteAnimatedView.m */,
+				BA0B79611F2EDCAF001AD766 /* SVProgressAnimatedView.h */,
+				BA0B79621F2EDCAF001AD766 /* SVProgressAnimatedView.m */,
+				BA0B79631F2EDCAF001AD766 /* SVProgressHUD-Prefix.pch */,
+				BA0B79641F2EDCAF001AD766 /* SVProgressHUD.bundle */,
+				BA0B79651F2EDCAF001AD766 /* SVProgressHUD.h */,
+				BA0B79661F2EDCAF001AD766 /* SVProgressHUD.m */,
+				BA0B79671F2EDCAF001AD766 /* SVRadialGradientLayer.h */,
+				BA0B79681F2EDCAF001AD766 /* SVRadialGradientLayer.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 		BAB8DFDA1E65507700FCADB3 = {
 			isa = PBXGroup;
 			children = (
@@ -81,50 +133,15 @@
 		BAB8DFE51E65507700FCADB3 /* MapYourPhotos */ = {
 			isa = PBXGroup;
 			children = (
+				BA0B79501F2DC466001AD766 /* Controller */,
+				BABFF2DB1F2DC27F00D98534 /* Model */,
 				BAD29C371E65559300B1D3A5 /* SupportingFiles */,
 				BAB8E00D1E65523C00FCADB3 /* Storyboards */,
-				BAB8DFF91E65522D00FCADB3 /* ViewControllers */,
-				BAB8DFFC1E65523500FCADB3 /* Library */,
-				BAD29C3E1E65568600B1D3A5 /* Images */,
+				BA0B795B1F2EDCAF001AD766 /* Resources */,
 				BAB8DFED1E65507700FCADB3 /* Assets.xcassets */,
 				BAB8DFF21E65507700FCADB3 /* Info.plist */,
 			);
 			path = MapYourPhotos;
-			sourceTree = "<group>";
-		};
-		BAB8DFF91E65522D00FCADB3 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				BAD29C3C1E6555BD00B1D3A5 /* SaveMapViewController.swift */,
-				BAB8DFFA1E65522D00FCADB3 /* ViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		BAB8DFFC1E65523500FCADB3 /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				BAEA8B511F2987C60034DB35 /* ArcGIS.bundle */,
-				BAB8DFFD1E65523500FCADB3 /* SVProgressHUD */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
-		BAB8DFFD1E65523500FCADB3 /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				BAB8DFFE1E65523500FCADB3 /* SVIndefiniteAnimatedView.h */,
-				BAB8DFFF1E65523500FCADB3 /* SVIndefiniteAnimatedView.m */,
-				BAB8E0001E65523500FCADB3 /* SVProgressAnimatedView.h */,
-				BAB8E0011E65523500FCADB3 /* SVProgressAnimatedView.m */,
-				BAB8E0021E65523500FCADB3 /* SVProgressHUD-Prefix.pch */,
-				BAB8E0031E65523500FCADB3 /* SVProgressHUD.bundle */,
-				BAB8E0041E65523500FCADB3 /* SVProgressHUD.h */,
-				BAB8E0051E65523500FCADB3 /* SVProgressHUD.m */,
-				BAB8E0061E65523500FCADB3 /* SVRadialGradientLayer.h */,
-				BAB8E0071E65523500FCADB3 /* SVRadialGradientLayer.m */,
-			);
-			path = SVProgressHUD;
 			sourceTree = "<group>";
 		};
 		BAB8E00D1E65523C00FCADB3 /* Storyboards */ = {
@@ -136,20 +153,23 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
+		BABFF2DB1F2DC27F00D98534 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BA0B79551F2DC6C8001AD766 /* MapModel.swift */,
+				BA0B79571F2DCAEC001AD766 /* MapDetailsModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BAD29C371E65559300B1D3A5 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
 				BAD29C381E65559300B1D3A5 /* AppDelegate.swift */,
+				BABFF2D71F2C757500D98534 /* FetchPhotosClient.swift */,
+				BABFF2DE1F2DC2FB00D98534 /* GlobalConstants.swift */,
 			);
 			path = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		BAD29C3E1E65568600B1D3A5 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				BAD29C3F1E65568600B1D3A5 /* flickr.png */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		BAD29C411E65578F00B1D3A5 /* Frameworks */ = {
@@ -219,12 +239,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAEA8B521F2987C60034DB35 /* ArcGIS.bundle in Resources */,
-				BAD29C401E65568600B1D3A5 /* flickr.png in Resources */,
+				BA0B79701F2EDCD6001AD766 /* ArcGIS.bundle in Resources */,
+				BA0B796C1F2EDCAF001AD766 /* SVProgressHUD.bundle in Resources */,
 				BAB8DFF11E65507700FCADB3 /* LaunchScreen.storyboard in Resources */,
 				BAB8DFEE1E65507700FCADB3 /* Assets.xcassets in Resources */,
+				BA0B79691F2EDCAF001AD766 /* flickr.png in Resources */,
 				BAB8DFEC1E65507700FCADB3 /* Main.storyboard in Resources */,
-				BAB8E00A1E65523500FCADB3 /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,13 +255,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BABFF2D81F2C757500D98534 /* FetchPhotosClient.swift in Sources */,
+				BA0B79581F2DCAEC001AD766 /* MapDetailsModel.swift in Sources */,
+				BA0B79531F2DC466001AD766 /* MapDetailsVC.swift in Sources */,
+				BA0B796A1F2EDCAF001AD766 /* SVIndefiniteAnimatedView.m in Sources */,
 				BAD29C3A1E65559300B1D3A5 /* AppDelegate.swift in Sources */,
-				BAB8DFFB1E65522D00FCADB3 /* ViewController.swift in Sources */,
-				BAD29C3D1E6555BD00B1D3A5 /* SaveMapViewController.swift in Sources */,
-				BAB8E00C1E65523500FCADB3 /* SVRadialGradientLayer.m in Sources */,
-				BAB8E00B1E65523500FCADB3 /* SVProgressHUD.m in Sources */,
-				BAB8E0081E65523500FCADB3 /* SVIndefiniteAnimatedView.m in Sources */,
-				BAB8E0091E65523500FCADB3 /* SVProgressAnimatedView.m in Sources */,
+				BA0B796B1F2EDCAF001AD766 /* SVProgressAnimatedView.m in Sources */,
+				BABFF2DF1F2DC2FB00D98534 /* GlobalConstants.swift in Sources */,
+				BA0B796D1F2EDCAF001AD766 /* SVProgressHUD.m in Sources */,
+				BA0B79541F2DC466001AD766 /* MapViewVC.swift in Sources */,
+				BA0B79561F2DC6C8001AD766 /* MapModel.swift in Sources */,
+				BA0B796E1F2EDCAF001AD766 /* SVRadialGradientLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
